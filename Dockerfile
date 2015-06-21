@@ -9,7 +9,9 @@ RUN echo 'deb http://deb.torproject.org/torproject.org trusty main' >> /etc/apt/
 RUN apt-get update
 RUN apt-get install -y tor
 
+RUN echo 'ORPort 9001' >> /etc/tor/torrc 
 RUN echo 'ExitPolicy reject *:*' >> /etc/tor/torrc
+
 RUN usermod -u 9001 debian-tor
 RUN groupmod -g 9001 debian-tor
 RUN chown -R debian-tor:debian-tor /var/lib/tor
