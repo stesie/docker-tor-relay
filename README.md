@@ -6,16 +6,17 @@ to this container is that it's non-exit, bandwidth or data isn't restricted.
 ## Usage
 
 ```
-docker run selaux/tor-relay
+docker run -p 9001:9001 selaux/tor-relay
 ```
 
 ## Changing Configuration
 
 To change your configuration, all you need to do is write your own configuration
-file and mount it.
+file and mount it. You might need to forward additional ports depending on your
+configuration.
 
 ```
-docker run -v /path/to/torrc:/etc/tor/torrc selaux/tor-relay
+docker run -p 9001:9001 -p 9030:9030 -v /path/to/torrc:/etc/tor/torrc selaux/tor-relay
 ```
 
 ## Persisting the Relay's Key
@@ -25,5 +26,5 @@ The tor user inside the docker container has UID and GID set to 9001 if you
 want to set up permissions.
 
 ```
-docker run -v /some/path/:/var/lib/docker selaux/tor-relay
+docker run -p 9001:9001  -v /some/path/:/var/lib/docker selaux/tor-relay
 ```
